@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>holy spirit em medium college/ Official Website</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #333;
+            line-height: 1.6;
+        }
+
+
+        header {
+            background: #082b55;
+            color: white;
+            padding: 15px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: #ffd166;
+        }
+
+        .banner {
+            min-height: 350px;
+            padding: 70px 20px;
+            text-align: center;
+            color: white;
+            background: linear-gradient(135deg, #0b4778, #168aad);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .banner h1 {
+            font-size: clamp(30px, 5vw, 48px);
+            margin-bottom: 15px;
+        }
+
+        .banner p {
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #ffd166;
+            color: #082b55;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background: white;
+        }
+
+
+        section {
+            padding: 50px 7%;
+            scroll-margin-top: 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #082b55;
+            font-size: 30px;
+            margin-bottom: 30px;
+        }
+
+        .about {
+            text-align: center;
+            max-width: 900px;
+            margin: auto;
+        }
+
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit, minmax(220px, 1fr)
+            );
+            gap: 22px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px #00000012;
+            border-top: 4px solid #168aad;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #0b4778;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 15px;
+        }
+
+
+        .admissions {
+            background: #e8f3fb;
+            text-align: center;
+        }
+
+        .admissions p {
+            margin-bottom: 20px;
+        }
+
+
+        .contact {
+            background: white;
+            text-align: center;
+        }
+
+        .contact p {
+            margin: 8px 0;
+        }
+
+        /* Footer */
+        footer {
+            background: #082b55;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @media (max-width: 650px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav {
+                justify-content: center;
+                gap: 10px;
+            }
+
+            nav a {
+                font-size: 13px;
+            }
+
+            .banner {
+                padding: 55px 15px;
+            }
+
+            .banner p {
+                font-size: 16px;
+            }
+
+            section {
+                padding: 35px 5%;
+            }
+
+            .section-title {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">holy spirit em medium college</div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#departments">Departments</a>
+            <a href="#faculty">Faculty</a>
+            <a href="#admissions">Admissions</a>
+            <a href="#facilities">Facilities</a>
+            <a href="#events">Events</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+    <section class="banner" id="home">
+        <h1>Welcome to holy spirit em medium college</h1>
+        <p>Learn Today, Lead Tomorrow</p>
+        <p>Quality Education | Innovation | Excellence</p>
+        <a href="#admissions" class="btn">Apply for Admission</a>
+    </section>
+    <section id="about">
+        <h2 class="section-title">About Our College</h2>
+        <div class="about">
+            <p>
+             holy spirit em medium college is dedicated to providing quality education,
+                developing professional skills, and encouraging innovation.
+                Our mission is to prepare students for successful careers
+                through academic excellence and practical learning.
+            </p>
+        </div>
+    </section>
+    <section id="departments">
+        <h2 class="section-title">Departments & Courses</h2>
+
+        <div class="card-container">
+            <div class="card">
+                <h3>💻 Information Technology</h3>
+                <p>B.Tech IT, programming, networking,
+                   cybersecurity, and web development.</p>
+            </div>
+
+            <div class="card">
+                <h3>⚙️ Computer Science</h3>
+                <p>Computer science, software engineering,
+                   data structures, and artificial intelligence.</p>
+            </div>
+
+            <div class="card">
+                <h3>🔌 Electronics</h3>
+                <p>Electronic circuits, communication systems,
+                   embedded systems, and hardware design.</p>
+            </div>
+
+            <div class="card">
+                <h3>🏗️ Civil Engineering</h3>
+                <p>Construction, structural engineering,
+                   surveying, and infrastructure design.</p>
+            </div>
+        </div>
+    </section>
+    <section id="faculty">
+        <h2 class="section-title">Our Faculty</h2>
+
+        <div class="card-container">
+            <div class="card">
+                <h3>Dr. Rajesh Kumar</h3>
+                <p><strong>Department:</strong> Information Technology</p>
+                <p><strong>Qualification:</strong> Ph.D.</p>
+                <p>Specialization in software development.</p>
+            </div>
+
+            <div class="card">
+                <h3>Prof. Priya Sharma</h3>
+                <p><strong>Department:</strong> Computer Science</p>
+                <p><strong>Qualification:</strong> M.Tech.</p>
+                <p>Specialization in artificial intelligence.</p>
+            </div>
+
+            <div class="card">
+                <h3>Prof. Arun Kumar</h3>
+                <p><strong>Department:</strong> Electronics</p>
+                <p><strong>Qualification:</strong> M.Tech.</p>
+                <p>Specialization in electronic systems.</p>
+            </div>
+        </div>
+    </section>
+    <section class="admissions" id="admissions">
+        <h2 class="section-title">Admissions 2026–27</h2>
+
+        <p>Start your journey towards a successful career with us.</p>
+        <p>1. Check eligibility requirements.</p>
+        <p>2. Complete the application form.</p>
+        <p>3. Submit the required documents.</p>
+        <p>4. Complete the admission process.</p>
+
+        <a href="#contact" class="btn">Admission Enquiry</a>
+    </section>
+    <section id="facilities">
+        <h2 class="section-title">Campus Facilities</h2>
+
+        <div class="card-container">
+            <div class="card">
+                <h3>📚 Library</h3>
+                <p>A learning space with books, journals,
+                   and digital resources.</p>
+            </div>
+
+            <div class="card">
+                <h3>🖥️ Computer Labs</h3>
+                <p>Practical learning through computers,
+                   software, and technology tools.</p>
+            </div>
+
+            <div class="card">
+                <h3>🏏 Sports</h3>
+                <p>Sports activities that encourage fitness,
+                   teamwork, and discipline.</p>
+            </div>
+
+            <div class="card">
+                <h3>🚌 Transport</h3>
+                <p>Student transportation facilities
+                   subject to campus availability.</p>
+            </div>
+        </div>
+    </section>
+    <section id="events">
+        <h2 class="section-title">College Events</h2>
+
+        <div class="card-container">
+            <div class="card">
+                <h3>🎓 Annual Day</h3>
+                <p>A celebration of student achievements
+                   and college activities.</p>
+            </div>
+
+            <div class="card">
+                <h3>🤖 Technical Fest</h3>
+                <p>Projects, coding competitions,
+                   and technology exhibitions.</p>
+            </div>
+
+            <div class="card">
+                <h3>🎭 Cultural Fest</h3>
+                <p>Music, dance, arts, and cultural
+                   performances by students.</p>
+            </div>
+        </div>
+    </section>
+    <section class="contact" id="contact">
+        <h2 class="section-title">Contact Us</h2>
+
+        <p><strong>Address:</strong>holy spirit em medium college, Andhra Pradesh, India</p>
+        <p><strong>Email:</strong> info@example.com</p>
+        <p><strong>Phone:</strong> +91 6305894747</p>
+        <p><strong>Office Hours:</strong> Monday to Saturday</p>
+    </section>
+    <footer>
+        <p>&copy; 2026 holy spirit em medium college. All Rights Reserved.</p>
+        <p>Designed using HTML and CSS</p>
+    </footer>
+
+</body>
+</html>
