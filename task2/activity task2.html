@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foodify - Online Food Ordering</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f8f9fc;
+    color: #222;
+    line-height: 1.6;
+}
+
+header {
+    background: #15191d;
+    color: white;
+    padding: 16px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: bold;
+    color: #ffad00;
+}
+
+.logo span {
+    color: white;
+}
+
+nav {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+nav a:hover {
+    color: #ffad00;
+}
+
+.cart {
+    background: #ffad00;
+    color: #15191d;
+    padding: 9px 16px;
+    border-radius: 25px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+.hero {
+    min-height: 340px;
+    padding: 65px 7%;
+    display: flex;
+    align-items: center;
+    background:
+        linear-gradient(90deg, #17120ee8, #17120e55),
+        url("https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1600&q=85")
+        center/cover;
+    color: white;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.hero h1 {
+    font-size: clamp(32px, 5vw, 48px);
+    line-height: 1.2;
+    margin: 12px 0;
+}
+
+.hero p {
+    margin-bottom: 20px;
+}
+
+.highlight {
+    color: #ffb000;
+    font-weight: bold;
+}
+
+.search-box {
+    display: flex;
+    gap: 8px;
+    max-width: 480px;
+}
+
+.search-box input {
+    width: 100%;
+    min-width: 0;
+    padding: 13px;
+    border: none;
+    border-radius: 7px;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+}
+
+.btn {
+    display: inline-block;
+    background: #ffad00;
+    color: #17191d;
+    padding: 12px 18px;
+    border-radius: 7px;
+    font-weight: bold;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.btn:hover {
+    background: #ffca52;
+}
+
+
+section {
+    padding: 42px 7%;
+    scroll-margin-top: 15px;
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.section-heading h2 {
+    font-size: 27px;
+    color: #182331;
+}
+
+.section-heading a {
+    color: #d97706;
+    text-decoration: none;
+}
+
+.categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 16px;
+    text-align: center;
+}
+
+.category {
+    background: white;
+    padding: 15px 8px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px #0000000c;
+    text-decoration: none;
+    color: #222;
+    transition: 0.3s;
+}
+
+.category:hover {
+    transform: translateY(-5px);
+    border: 1px solid #ffad00;
+}
+
+.category img {
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 7px;
+}
+
+
+.food-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+}
+
+.food-card {
+    background: white;
+    border-radius: 13px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px #00000010;
+    transition: transform 0.3s;
+}
+
+.food-card:hover {
+    transform: translateY(-5px);
+}
+
+.food-card img {
+    width: 100%;
+    height: 185px;
+    object-fit: cover;
+    display: block;
+}
+
+.food-info {
+    padding: 16px;
+}
+
+.food-info h3 {
+    margin-bottom: 5px;
+}
+
+.food-info p {
+    color: #666;
+    font-size: 14px;
+    min-height: 44px;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+    gap: 8px;
+}
+
+.price {
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.rating {
+    color: #f59e0b;
+    font-size: 14px;
+}
+
+.order-btn {
+    display: block;
+    width: 100%;
+    margin-top: 13px;
+    padding: 11px;
+    background: #ffad00;
+    border-radius: 7px;
+    font-weight: bold;
+}
+
+.order-btn:hover {
+    background: #ffca52;
+}
+
+.offers {
+    background: #fff0dc;
+}
+
+.offer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+}
+
+.offer-card {
+    padding: 25px;
+    min-height: 180px;
+    border-radius: 14px;
+    color: white;
+    background: linear-gradient(135deg, #a93219, #f97316);
+}
+
+.offer-card:nth-child(2) {
+    background: linear-gradient(135deg, #172b4d, #2676a5);
+}
+
+.offer-card h3 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.offer-card p {
+    margin-bottom: 12px;
+}
+
+.restaurant {
+    text-align: center;
+    background: #18212b;
+    color: white;
+}
+
+.restaurant h2 {
+    font-size: 28px;
+    color: #ffad00;
+    margin-bottom: 10px;
+}
+
+.restaurant p {
+    margin: 7px 0;
+}
+
+.review-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.review-card {
+    background: white;
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px #0000000c;
+}
+
+.review-card h3 {
+    font-size: 17px;
+}
+
+.review-card .stars {
+    color: #f59e0b;
+}
+
+.review-card p {
+    font-size: 14px;
+    color: #555;
+    margin-top: 8px;
+}
+
+/* FOOTER */
+footer {
+    background: #15191d;
+    color: white;
+    padding: 30px 7%;
+    text-align: center;
+}
+
+footer a {
+    color: #ffad00;
+    text-decoration: none;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+
+@media (max-width: 650px) {
+    header {
+        flex-direction: column;
+        padding: 18px 5%;
+    }
+
+    nav {
+        justify-content: center;
+        gap: 12px 16px;
+    }
+
+    nav a {
+        font-size: 13px;
+    }
+
+    .hero {
+        padding: 45px 5%;
+        min-height: 310px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    section {
+        padding: 32px 5%;
+    }
+
+    .section-heading h2 {
+        font-size: 23px;
+    }
+
+    .food-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .food-card img {
+        height: 135px;
+    }
+
+    .food-info {
+        padding: 11px;
+    }
+
+    .food-info h3 {
+        font-size: 15px;
+    }
+
+    .food-info p {
+        font-size: 12px;
+        min-height: 55px;
+    }
+
+    .price {
+        font-size: 16px;
+    }
+
+    .order-btn {
+        font-size: 12px;
+        padding: 10px 5px;
+    }
+
+    .search-box {
+        flex-wrap: wrap;
+    }
+
+    .search-box input {
+        flex-basis: 100%;
+    }
+}
+
+@media (max-width: 360px) {
+    .food-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Food<span>ify</span></div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#menu">Menu</a>
+        <a href="#offers">Offers</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <a href="#menu" class="cart">View Menu 🛒</a>
+</header>
+
+
+<div class="hero" id="home">
+    <div class="hero-content">
+        <p class="highlight">Welcome to Foodify!</p>
+
+        <h1>Delicious Food,<br>Delivered to Your Door</h1>
+
+        <p>Fresh ingredients • Great taste • Fast delivery</p>
+
+        <form class="search-box" action="#menu">
+            <input type="text" placeholder="Enter your delivery address"
+                   aria-label="Delivery address">
+            <button class="btn" type="submit">Find Food</button>
+        </form>
+    </div>
+</div>
+
+
+<section id="menu">
+    <div class="section-heading">
+        <div>
+            <h2>Our Menu</h2>
+            <p>Explore our delicious food categories</p>
+        </div>
+    </div>
+
+    <div class="categories">
+        <a class="category" href="#biryani">
+            <img src="https://images.unsplash.com/photo-1563379091339-03246963d96c?auto=format&fit=crop&w=300&q=80" alt="Biryani">
+            <h3>Biryani</h3>
+        </a>
+
+        <a class="category" href="#pizza">
+            <img src="https://images.unsplash.com/photo- pizza?auto=format&fit=crop&w=300&q=80" alt="Pizza">
+            <h3>Pizza</h3>
+        </a>
+
+        <a class="category" href="#burger">
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=300&q=80" alt="Burger">
+            <h3>Burgers</h3>
+        </a>
+
+        <a class="category" href="#indian">
+            <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=300&q=80" alt="Indian curry">
+            <h3>Indian</h3>
+        </a>
+
+        <a class="category" href="#desserts">
+            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=300&q=80" alt="Dessert">
+            <h3>Desserts</h3>
+        </a>
+    </div>
+</section>
+
+
+<section>
+    <div class="section-heading">
+        <h2>Popular Dishes</h2>
+        <a href="#menu">Explore Menu →</a>
+    </div>
+
+    <div class="food-grid">
+
+        <article class="food-card" id="biryani">
+            <img src="https://images.unsplash.com/photo-1563379091339-03246963d96c?auto=format&fit=crop&w=700&q=85" alt="Chicken biryani">
+            <div class="food-info">
+                <h3>Chicken Biryani</h3>
+                <p>Aromatic rice with spicy chicken and herbs.</p>
+                <div class="price-row">
+                    <span class="price">₹180</span>
+                    <span class="rating">★ 4.8</span>
+                </div>
+                <button class="order-btn" onclick="alert('Demo: Chicken Biryani selected!')">Add to Cart</button>
+            </div>
+        </article>
+
+        <article class="food-card" id="pizza">
+            <img src="https://images.unsplash.com/photo- pizza?auto=format&fit=crop&w=700&q=85" alt="Margherita pizza">
+            <div class="food-info">
+                <h3>Margherita Pizza</h3>
+                <p>Classic pizza with cheese, tomato and herbs.</p>
+                <div class="price-row">
+                    <span class="price">₹220</span>
+                    <span class="rating">★ 4.6</span>
+                </div>
+                <button class="order-btn" onclick="alert('Demo: Margherita Pizza selected!')">Add to Cart</button>
+            </div>
+        </article>
+
+        <article class="food-card" id="burger">
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=700&q=85" alt="Veg burger">
+            <div class="food-info">
+                <h3>Veg Burger</h3>
+                <p>Crispy patty with fresh veggies and sauce.</p>
+                <div class="price-row">
+                    <span class="price">₹120</span>
+                    <span class="rating">★ 4.5</span>
+                </div>
+                <button class="order-btn" onclick="alert('Demo: Veg Burger selected!')">Add to Cart</button>
+            </div>
+        </article>
+
+        <article class="food-card" id="indian">
+            <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=700&q=85" alt="Paneer curry">
+            <div class="food-info">
+                <h3>Paneer Butter Masala</h3>
+                <p>Rich and creamy paneer curry with spices.</p>
+                <div class="price-row">
+                    <span class="price">₹160</span>
+                    <span class="rating">★ 4.7</span>
+                </div>
+                <button class="order-btn" onclick="alert('Demo: Paneer Butter Masala selected!')">Add to Cart</button>
+            </div>
+        </article>
+
+        <article class="food-card" id="desserts">
+            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=85" alt="Chocolate cake">
+            <div class="food-info">
+                <h3>Chocolate Cake</h3>
+                <p>Rich chocolate cake for dessert lovers.</p>
+                <div class="price-row">
+                    <span class="price">₹100</span>
+                    <span class="rating">★ 4.9</span>
+                </div>
+                <button class="order-btn" onclick="alert('Demo: Chocolate Cake selected!')">Add to Cart</button>
+            </div>
+        </article>
+
+    </div>
+</section>
+
+
+<section class="offers" id="offers">
+    <div class="section-heading">
+        <h2>Special Offers 🎉</h2>
+    </div>
+
+    <div class="offer-grid">
+        <div class="offer-card">
+            <h3>50% OFF</h3>
+            <p>Enjoy special discounts on selected pizzas.</p>
+            <strong>Code: PIZZA50</strong>
+        </div>
+
+        <div class="offer-card">
+            <h3>₹100 OFF</h3>
+            <p>Save on eligible orders above ₹499.</p>
+            <strong>Code: FOOD100</strong>
+        </div>
+
+        <div class="offer-card">
+            <h3>Free Delivery</h3>
+            <p>Enjoy delivery savings on eligible orders.</p>
+            <strong>Code: FREEDEL</strong>
+        </div>
+    </div>
+</section>
+
+
+<section id="reviews">
+    <div class="section-heading">
+        <h2>Customer Reviews ⭐</h2>
+    </div>
+
+    <div class="review-grid">
+        <div class="review-card">
+            <h3>Rahul Sharma</h3>
+            <div class="stars">★★★★★</div>
+            <p>The biryani was delicious, fresh and flavourful. Highly recommended!</p>
+        </div>
+
+        <div class="review-card">
+            <h3>Priya Patel</h3>
+            <div class="stars">★★★★★</div>
+            <p>Great food and excellent presentation. I enjoyed the pizza!</p>
+        </div>
+
+        <div class="review-card">
+            <h3>Amit Verma</h3>
+            <div class="stars">★★★★☆</div>
+            <p>A pleasant food ordering experience with tasty meals.</p>
+        </div>
+    </div>
+</section>
+
+
+<section class="restaurant" id="about">
+    <h2>About Foodify</h2>
+    <p>Good Food, Good Mood!</p>
+    <p>Fresh meals, delicious flavours and a convenient food ordering experience.</p>
+    <p>Opening Hours: 10:00 AM – 10:00 PM</p>
+</section>
+
+
+<section id="contact">
+    <div class="section-heading">
+        <h2>Contact Us</h2>
+    </div>
+
+    <p><strong>Restaurant:</strong> Foodify</p>
+    <p><strong>Address:</strong> Your Restaurant Address, Andhra Pradesh</p>
+    <p><strong>Email:</strong> foodify@example.com</p>
+    <p><strong>Phone:</strong> +91 98765 43210</p>
+</section>
+
+
+<footer>
+    <p>© 2026 Foodify. All Rights Reserved.</p>
+    <p>Designed with HTML and CSS</p>
+    <p><a href="#home">Back to Top ↑</a></p>
+</footer>
+
+</body>
+</html>
